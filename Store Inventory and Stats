@@ -1,0 +1,20 @@
+CREATE TABLE Store_Inventory (ID INTEGER PRIMARY KEY, Product TEXT, Price INTEGER, Inventory INTEGER, Item_Type TEXT);
+
+INSERT INTO Store_Inventory VALUES(1,"Blue Dress",40,27,"Dress");
+INSERT INTO Store_Inventory VALUES(2,"Purple Top",15,14,"Top");
+INSERT INTO Store_Inventory Values(3,"Pink Dress",15,13,"Dress");
+INSERT INTO Store_Inventory Values(4,"Orange Bra",30,10,"Bra");
+INSERT INTO Store_Inventory Values(5,"Black Bra",35,12,"Bra");
+INSERT INTO Store_Inventory Values(6,"Purple Dress",50,22,"Dress");
+INSERT INTO Store_Inventory Values(7,"Green Pants",18,12,"Pants");
+INSERT INTO Store_Inventory Values(8,"Green Top",26,25,"Top");
+INSERT INTO Store_Inventory Values(9,"Blue Pants",24,3,"Pants");
+INSERT INTO Store_Inventory Values(10,"Purple Skirt",19,20,"Skirt");
+INSERT INTO Store_Inventory Values(11,"Yellow Top",17,12,"Top");
+INSERT INTO Store_Inventory Values(12,"Brown Dress",50,12,"Dress");
+INSERT INTO Store_Inventory Values(13,"Orange Jumper",40,14,"Jumper");
+INSERT INTO Store_Inventory Values(14,"Grey Top",32,16,"Top");
+INSERT INTO Store_Inventory Values(15,"Black Dress",27,18,"Dress");
+
+SELECT * FROM Store_Inventory ORDER BY Price DESC;
+SELECT  SUM(Inventory) From Store_Inventory;
