@@ -1,0 +1,40 @@
+#1. How many orders were placed in January?
+SELECT COUNT(quantity) FROM bit_db.jansales;
+
+#2. How many of those orders were for an iPhone?
+SELECT COUNT(orderid) FROM bit_db.jansales
+WHERE Product = 'iPhone';
+
+#3. Select the customer account numbers for all the orders that were placed in February.
+SELECT customers.acctnum FROM bit_db.customers 
+LEFT JOIN bit_db.febsales
+ON customers.order_id = febsales.orderID' ;
+
+#4. Which product was the cheapest one sold in January, and what was the price?
+SELECT DISTINCT product,price FROM bit_db.jansales
+WHERE price IN (SELECT MIN(price) FROM bit_db.jansales);
+
+#5. What is the total revenue for each product sold in January?
+SELECT SUM(quantity)*price AS revenue,product FROM bit_db.jansales
+GROUP BY product;
+
+#6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+SELECT 
+product, 
+quantity, 
+SUM(quantity)*price AS revenue 
+FROM bit_db.febsales
+WHERE location = "548 Lincoln St, Seattle, WA 98101"
+
+#7. How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+SELECT COUNT(customers.acctnum), AVG(quantity)*price
+FROM bit_db.febsales
+LEFT JOIN bit_db.customers
+ON customers.order_id = febsales.orderID
+WHERE febsales.quantity >2;
+
+
+#8. List all the products sold in Los Angeles in February, and include how many of each were sold
+SELECT product, SUM(quantity) FROM BIT_DB.FebSales  
+WHERE location LIKE '%Los Angeles%'
+GROUP BY product;
