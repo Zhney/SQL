@@ -1,0 +1,55 @@
+#For this project, I downloaded Spotify data from Kaggle. The data inluded 50 of the most listened to songs of 2021.
+#I then created a table for the data to be imported into.
+
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+#With the table created I inserted the Spotify Data from the .csv into the table
+
+#I then quickly checked that the data had imported correctly and that there were no issues weith the columns 
+
+SELECT * FROM BIT_DB.Spotifydata
+LIMIT 5;
+
+
+#Once I had confirmed the table and data was set up correctly I decided to check out the average popularity, danceability and energy for each artist on the list
+#I knew that even with only 50 songs on the list there likely would still be several artists with multiple songs on the list. 
+
+
+SELECT artist_name
+,AVG(popularity)
+,AVG(danceability)
+,AVG(energy)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY AVG(popularity) DESC;
+
+
+#I then decided to look at the songs, their popularity and their duration 
+
+
+SELECT artist_name
+,track_name
+,popularity
+,duration_ms/60000 AS duration_minutes
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC
+LIMIT 10;
